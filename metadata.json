@@ -1,0 +1,5 @@
+{
+  "name": "FINANCIA",
+  "description": "A modern, AI-enhanced application for tracking personal finances. It allows users to manage transactions, accounts, debts, and categories with real-time updates, and provides AI-powered summaries of their spending habits.",
+  "requestFramePermissions": []
+}
