@@ -1,0 +1,31 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]   # cambia si tu rama se llama master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'   # o la versión que uses
+          # cache: 'npm'      # <-- comentar si no quieres cache/si no tienes package-lock.json
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
